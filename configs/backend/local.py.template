@@ -1,9 +1,11 @@
 from .common import *
 
-MEDIA_URL = "$TAIGA_SCHEME://$TAIGA_DOMAIN/media/"
-STATIC_URL = "$TAIGA_SCHEME://$TAIGA_DOMAIN/static/"
+MEDIA_URL = "$TAIGA_SCHEME://$TAIGA_DOMAIN:$TAIGA_PORT/media/"
+STATIC_URL = "$TAIGA_SCHEME://$TAIGA_DOMAIN:$TAIGA_PORT/static/"
+SITES["api"]["scheme"] = "$TAIGA_SCHEME"
+SITES["api"]["domain"] = "$TAIGA_HOST"
 SITES["front"]["scheme"] = "$TAIGA_SCHEME"
-SITES["front"]["domain"] = "$TAIGA_DOMAIN"
+SITES["front"]["domain"] = "$TAIGA_HOST"
 
 SECRET_KEY = "$TAIGA_KEY"
 

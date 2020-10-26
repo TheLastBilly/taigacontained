@@ -35,3 +35,11 @@ TAIGA_PORT=9200
 Defines the port that **taiga** will use
 
 ***Note:*** *The value of `TAIGA_PORT` must be the same as the one specified in the `ports` section for the `app` service in the* ***docker-compose.yml*** *file.*
+
+## Installation
+Run
+```bash
+docker-compose up -d
+```
+
+And that's it!

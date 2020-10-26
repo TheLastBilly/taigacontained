@@ -1,0 +1,7 @@
+{
+    "url": "amqp://taiga:Tragedy0-Jawed-Applicant@rabbit:5672/taiga",
+    "secret": "4/oHmHdCY5j0Va4XNfei+1LIScV+JW4WNpHDTr5XXkI=",
+    "webSocketServer": {
+        "port": 8888
+    }
+}

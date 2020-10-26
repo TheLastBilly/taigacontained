@@ -20,7 +20,7 @@ services:
     
     app:
         image: thelastbilly/taigacontained
-        build: .
+        #build: .
         links:
             - db
             - rabbit

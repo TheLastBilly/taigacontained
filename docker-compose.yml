@@ -19,6 +19,7 @@ services:
             - variables.env
     
     app:
+        image: thelastbilly/taigacontained
         build: .
         links:
             - db

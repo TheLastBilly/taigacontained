@@ -1,9 +1,5 @@
 version: '3'
 
-volumes: 
-    taiga_db:
-    taiga_media:
-
 services:
     db:
         image: postgres
@@ -11,7 +7,7 @@ services:
         env_file:
             - variables.env
         volumes:
-            - taiga_db:/var/lib/postgresql/data
+            - ./db:/var/lib/postgresql/data
     
     rabbit:
         image: rabbitmq
@@ -21,7 +17,7 @@ services:
     
     app:
         image: thelastbilly/taigacontained
-        #build: .
+        build: .
         restart: always
         links:
             - db
@@ -35,7 +31,7 @@ services:
             - ./configs/frontend/conf.json:/taiga/taiga-front/dist/conf.json
             - ./configs/backend/local.py:/taiga/taiga-back/settings/local.py
 
-            - taiga_media:/taiga/taiga-back/media
+            - ./media:/taiga/taiga-back/media
         
         env_file:
             - variables.env

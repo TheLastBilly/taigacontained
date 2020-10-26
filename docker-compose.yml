@@ -2,25 +2,21 @@ version: '3'
 
 volumes: 
     taiga_db:
+    taiga_media:
 
 services:
     db:
         image: postgres
-        environment: 
-            POSTGRES_DB: 'taiga'
-            POSTGRES_USER: 'taiga'
-            POSTGRES_PASSWORD: 'Tragedy0-Jawed-Applicant'
+        env_file:
+            - variables.env
         volumes:
             - taiga_db:/var/lib/postgresql/data
     
     rabbit:
         image: rabbitmq
         restart: always
-        environment: 
-            RABBIT_HOST: taiga
-            RABBIT_USER: taiga
-            RABBIT_PASSWORD: Tragedy0-Jawed-Applicant
-            RABBIT_VHOST: taiga
+        env_file:
+            - variables.env
     
     app:
         build: .
@@ -29,8 +25,17 @@ services:
             - rabbit
         volumes: 
             - ./configs/locks:/locks
-            - ./certs/cert.crt:/certs/cert.crt
-            - ./certs/cert.key:/certs/cert.key
-            - ./configs/nginx/proxy_params:/etc/nginx/proxy_params
+            - ./certs:/certs
+            - ./settings.csr:/cert_gen/settings.csr
+
+            - ./configs/events/config.json:/taiga/taiga-events/config.json
+            - ./configs/frontend/conf.json:/taiga/taiga-front/dist/conf.json
+            - ./configs/backend/local.py:/taiga/taiga-back/settings/local.py
+
+            - taiga_media:/taiga/taiga-back/media
+        
+        env_file:
+            - variables.env
+            
         ports:
             - 9200:443

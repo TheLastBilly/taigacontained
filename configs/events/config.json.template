@@ -1,0 +1,7 @@
+{
+    "url": "amqp://$RABBIT_USER:$RABBIT_PASSWORD@$RABBIT_URL:$RABBIT_PORT/$RABBIT_VHOST",
+    "secret": "$TAIGA_KEY",
+    "webSocketServer": {
+        "port": 8888
+    }
+}

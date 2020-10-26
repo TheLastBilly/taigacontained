@@ -1,6 +1,6 @@
 {
-    "api": "https://localhost:9200/api/v1/",
-    "eventsUrl": "ws://localhost:9200/events",
+    "api": "$TAIGA_SCHEME://$TAIGA_DOMAIN:$TAIGA_PORT/api/v1/",
+    "eventsUrl": "ws://$TAIGA_DOMAIN:$TAIGA_PORT/events",
     "eventsMaxMissedHeartbeats": 5,
     "eventsHeartbeatIntervalTime": 60000,
     "eventsReconnectTryInterval": 10000,

@@ -27,9 +27,15 @@ WORKDIR /taiga
 
 RUN git clone --depth=1 https://github.com/taigaio/taiga-front-dist.git taiga-front
 
-COPY ./configs/events/config.json /taiga/taiga-events/config.json
-COPY ./configs/frontend/conf.json /taiga/taiga-front/dist/conf.json
-COPY ./configs/backend/local.py /taiga/taiga-back/settings/local.py
+RUN mkdir /cert_gen/
+COPY ./gen_cert.sh /cert_gen/gen_cert.sh
+
+RUN mkdir /templates/
+
+COPY ./configs/events/config.json.template /templates/config.json.template
+COPY ./configs/frontend/conf.json.template /templates/conf.json.template
+COPY ./configs/backend/local.py.template /templates/local.py.template
+
 COPY ./configs/nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 
 COPY ./entrypoint.sh /entrypoint.sh
